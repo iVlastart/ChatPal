@@ -22,11 +22,11 @@ namespace ChatPal.MVVM.VIewModel
 			}
 		}
 
-        public UserViewModel(string name, string username, string email, byte[] password)
+        public UserViewModel(string Id, string username, string email, byte[] password)
         {
 			User = new User
 			{
-				Name = name,
+				Id = Id,
 				Username = username,
 				Email = email,
 				Password = password

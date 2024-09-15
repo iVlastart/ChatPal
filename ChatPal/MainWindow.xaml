@@ -21,6 +21,10 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <ContentControl Grid.Row="0" Content="{Binding currentView}" Margin="0,-1,0,1"/>
+            <Label Grid.Row="1"
+                   Name=""
+                   CommandManager.CanExecute="Label_CanExecute"
+                   Content=""/>
         </Grid>
     </Border>
 </Window>

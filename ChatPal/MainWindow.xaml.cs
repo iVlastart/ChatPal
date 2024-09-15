@@ -22,5 +22,10 @@ namespace ChatPal
             InitializeComponent();
             DataContext = new MainViewModel();
         }
+
+        private void Label_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            
+        }
     }
 }

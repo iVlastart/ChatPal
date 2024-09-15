@@ -9,6 +9,7 @@
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="Theme/txtUsernameTheme.xaml"/>
+                <ResourceDictionary Source="Theme/txtEmailTheme.xaml"/>
             </ResourceDictionary.MergedDictionaries>
             <DataTemplate DataType="{x:Type viewModel:LoginViewModel}">
                 <viewAuth:Login/>
