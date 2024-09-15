@@ -24,5 +24,10 @@ namespace ChatPal.MVVM.View.Auth
         {
             InitializeComponent();
         }
+
+        private void signin(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

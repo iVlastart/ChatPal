@@ -23,9 +23,21 @@ namespace ChatPal
             DataContext = new MainViewModel();
         }
 
-        private void Label_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        private void Button_Click(object sender, RoutedEventArgs e)
         {
-            
+            if(DataContext is MainViewModel main)
+            {
+                if(main.currentView is SigninViewModel)
+                {
+                    btnQuestion.Content = "Already have an account? Login";
+                    btnQuestion.Command = main.LoginViewCommand;
+                }
+                else if(main.currentView is LoginViewModel)
+                {
+                    btnQuestion.Content = "Don't have an account? Signin";
+                    btnQuestion.Command = main.SigninViewCommand;
+                }
+            }
         }
     }
 }

@@ -12,9 +12,8 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <Label Content="ChatPal" 
+        <Label Content="ChatPal"
                Foreground="White"
                FontSize="40"
                Grid.Row="0"
@@ -25,12 +24,9 @@
                  Grid.Row="1"
                  Name="txtUsername"
                  Style="{StaticResource txtUsernameTheme}"/>
-        <TextBox Margin="219,56,225,19"
-                 Grid.Row="2"
-                 Style="{StaticResource txtEmailTheme}"/>
-        <PasswordBox Grid.Row="3"
+        <PasswordBox Grid.Row="2"
                      Margin="219,56,225,19"/>
-        <Button Grid.Row="4"
+        <Button Grid.Row="3"
                 Content="Signin" Margin="265,28,271,28"
                 FontSize="20" 
                 Click="signin"/>
