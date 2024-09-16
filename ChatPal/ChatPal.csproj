@@ -11,8 +11,11 @@
   <ItemGroup>
     <Folder Include="Fonts\" />
     <Folder Include="Images\" />
-    <Folder Include="LocalStorage\" />
     <Folder Include="db\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="DotNetEnv" Version="3.1.1" />
   </ItemGroup>
 
 </Project>

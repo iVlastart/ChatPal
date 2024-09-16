@@ -27,7 +27,8 @@ namespace ChatPal.MVVM.View.Auth
 
         private void login(object sender, RoutedEventArgs e)
         {
-            
+            string connectionString = Enviro.CONNECT();
+            MessageBox.Show(connectionString);
         }
     }
 }
