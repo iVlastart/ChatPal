@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ChatPal.db;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -28,7 +29,6 @@ namespace ChatPal.MVVM.View.Auth
         private void login(object sender, RoutedEventArgs e)
         {
             string connectionString = Enviro.CONNECT();
-            MessageBox.Show(connectionString);
         }
     }
 }

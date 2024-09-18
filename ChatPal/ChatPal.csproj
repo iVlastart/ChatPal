@@ -11,11 +11,11 @@
   <ItemGroup>
     <Folder Include="Fonts\" />
     <Folder Include="Images\" />
-    <Folder Include="db\" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="DotNetEnv" Version="3.1.1" />
+    <PackageReference Include="System.Data.SqlClient" Version="4.8.6" />
   </ItemGroup>
 
 </Project>
