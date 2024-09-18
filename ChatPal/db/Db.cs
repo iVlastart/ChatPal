@@ -36,6 +36,39 @@ namespace ChatPal.db
             } 
         }
 
+        internal static void logUser(string username, string password)
+        {
+            SqlConnection con = new(Enviro.CONNECT());
+            try
+            {
+                openCon(con);
+                if (!checkIfUserExists(username))
+                {
+                    string query = "SELECT * FROM Users WHERE Username=@username AND Password=@password";
+                    using(SqlCommand cmd = new(query, con))
+                    {
+                        cmd.Parameters.AddWithValue("@username", username);
+                        cmd.Parameters.AddWithValue("@password", password);
+                        using(SqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                
+                            }
+                        }
+                    }
+                }
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message, "logUser ERROR", MessageBoxButton.OK);
+            }
+            finally
+            {
+                con.Close();
+            }
+        }
+
         //change this to private later after checking if it works
         internal static string makeID(string username)
         {
@@ -58,11 +91,17 @@ namespace ChatPal.db
             {
                 return "Please provide a password";
             }
-            //also check if the user does not exist
-            return "";
+            /*else if()
+            {
+                return $"{username} was not found";
+            }*/
+            else
+            {
+                return "";
+            }
         }
 
-        private static string findUserByUsername(string username)
+        private static bool checkIfUserExists(string username)
         {
             SqlConnection con = new(Enviro.CONNECT());
             try
@@ -72,13 +111,17 @@ namespace ChatPal.db
                 using(SqlCommand cmd = new(query, con))
                 {
                     cmd.Parameters.AddWithValue("@username", username);
+                    using(SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        if (reader.HasRows) return true;
+                        else return false;
+                    }
                 }
-                return "";
             }
             catch(Exception ex)
             {
                 MessageBox.Show(ex.Message, "findUserByUsername ERROR", MessageBoxButton.OK);
-                return "";
+                return false;
             }
             finally { con.Close(); }
             
