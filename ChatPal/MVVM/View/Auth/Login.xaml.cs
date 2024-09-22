@@ -28,7 +28,7 @@ namespace ChatPal.MVVM.View.Auth
 
         private void login(object sender, RoutedEventArgs e)
         {
-            string connectionString = Enviro.CONNECT();
+            Db.logUser(txtUsername.Text, pswPassword.Password);
         }
     }
 }

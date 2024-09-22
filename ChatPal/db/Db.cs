@@ -36,7 +36,7 @@ namespace ChatPal.db
             } 
         }
 
-        internal static void logUser(string username, string password)
+        internal static bool logUser(string username, string password)
         {
             SqlConnection con = new(Enviro.CONNECT());
             try
@@ -51,17 +51,21 @@ namespace ChatPal.db
                         cmd.Parameters.AddWithValue("@password", password);
                         using (SqlDataReader reader = cmd.ExecuteReader())
                         {
-                            while (reader.Read())
+                            if (reader.Read())
                             {
-
+                                MessageBox.Show("LOGIN");
+                                return true;
                             }
+                            else MessageBox.Show("FAIL");
                         }
                     }
                 }
+                return false;
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "logUser ERROR", MessageBoxButton.OK);
+                return false;
             }
             finally
             {
@@ -92,7 +96,7 @@ namespace ChatPal.db
             }
             else if(checkIfUserExists(username))
             {
-                return $"{username} is taken";
+                return $"{username} is unavailable";
             }
             else
             {
