@@ -24,7 +24,8 @@
                  Grid.Row="1"
                  Name="txtUsername"
                  Style="{StaticResource txtUsernameTheme}"/>
-        <PasswordBox Grid.Row="2"
+        <PasswordBox Name="pswPassword"
+                     Grid.Row="2"
                      Margin="219,56,225,19"/>
         <Button Grid.Row="3"
                 Content="Signin" Margin="265,28,271,28"

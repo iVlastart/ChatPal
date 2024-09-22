@@ -80,7 +80,7 @@ namespace ChatPal.db
             return $"{id1stPart}.{new string(id2ndPart)}";
         }
 
-        private static string checkErrors(string username, string password)
+        internal static string checkErrors(string username, string password)
         {
             if (string.IsNullOrEmpty(username))
             {
@@ -90,9 +90,9 @@ namespace ChatPal.db
             {
                 return "Please provide a password";
             }
-            else if(false)
+            else if(checkIfUserExists(username))
             {
-                return $"{username} was not found";
+                return $"{username} is taken";
             }
             else
             {

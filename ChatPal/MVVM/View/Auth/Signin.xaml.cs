@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ChatPal.db;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -27,7 +28,8 @@ namespace ChatPal.MVVM.View.Auth
 
         private void signin(object sender, RoutedEventArgs e)
         {
-
+            if(Db.checkErrors(txtUsername.Text, pswPassword.Password) != "") MessageBox.Show(Db.checkErrors(txtUsername.Text, pswPassword.Password));
+            else Db.addUser(txtUsername.Text, pswPassword.Password);
         }
     }
 }
