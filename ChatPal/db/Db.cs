@@ -42,25 +42,25 @@ namespace ChatPal.db
             try
             {
                 openCon(con);
-                if (!checkIfUserExists(username))
+                string query = "SELECT * FROM Users WHERE Username=@username AND Password=@password";
+                using (SqlCommand cmd = new(query, con))
                 {
-                    string query = "SELECT * FROM Users WHERE Username=@username AND Password=@password";
-                    using (SqlCommand cmd = new(query, con))
+                    cmd.Parameters.AddWithValue("@username", username);
+                    cmd.Parameters.AddWithValue("@password", password);
+                    using (SqlDataReader reader = cmd.ExecuteReader())
                     {
-                        cmd.Parameters.AddWithValue("@username", username);
-                        cmd.Parameters.AddWithValue("@password", password);
-                        using (SqlDataReader reader = cmd.ExecuteReader())
+                        if (reader.HasRows)
                         {
-                            if (reader.Read())
-                            {
-                                MessageBox.Show("LOGIN");
-                                return true;
-                            }
-                            else MessageBox.Show("FAIL");
+                            MessageBox.Show("LOGIN");
+                            return true;
+                        }
+                        else
+                        {
+                            MessageBox.Show("FAIL");
+                            return false;
                         }
                     }
                 }
-                return false;
             }
             catch (Exception ex)
             {

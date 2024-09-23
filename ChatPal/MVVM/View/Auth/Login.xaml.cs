@@ -1,6 +1,7 @@
 ﻿using ChatPal.db;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -29,6 +30,7 @@ namespace ChatPal.MVVM.View.Auth
         private void login(object sender, RoutedEventArgs e)
         {
             Db.logUser(txtUsername.Text, pswPassword.Password);
+            Debug.WriteLine(Db.logUser(txtUsername.Text, pswPassword.Password).ToString());
         }
     }
 }
