@@ -51,12 +51,10 @@ namespace ChatPal.db
                     {
                         if (reader.HasRows)
                         {
-                            MessageBox.Show("LOGIN");
                             return true;
                         }
                         else
                         {
-                            MessageBox.Show("FAIL");
                             return false;
                         }
                     }
@@ -94,17 +92,13 @@ namespace ChatPal.db
             {
                 return "Please provide a password";
             }
-            else if(checkIfUserExists(username))
-            {
-                return $"{username} is unavailable";
-            }
             else
             {
                 return "";
             }
         }
 
-        private static bool checkIfUserExists(string username)
+        internal static bool checkIfUserExists(string username)
         {
             SqlConnection con = new(Enviro.CONNECT());
             try

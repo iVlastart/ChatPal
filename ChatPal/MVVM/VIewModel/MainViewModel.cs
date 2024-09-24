@@ -12,8 +12,10 @@ namespace ChatPal.MVVM.VIewModel
     {
         public RelayCommand LoginViewCommand { get; set; }
         public RelayCommand SigninViewCommand {  get; set; }
+        public RelayCommand HomeViewCommand { get; set; }
         public LoginViewModel loginVM { get; set; }
         public SigninViewModel signinVM { get; set; }
+        public HomeViewModel homeVM { get; set; }
         private object _currentView;
 
         public object currentView
@@ -30,6 +32,7 @@ namespace ChatPal.MVVM.VIewModel
         {
             loginVM = new LoginViewModel();
             signinVM = new SigninViewModel();
+            homeVM = new HomeViewModel();
             currentView = loginVM;
             LoginViewCommand = new RelayCommand(obj =>
             {
@@ -38,6 +41,10 @@ namespace ChatPal.MVVM.VIewModel
             SigninViewCommand = new RelayCommand(obj =>
             {
                 currentView = signinVM;
+            });
+            HomeViewCommand = new RelayCommand(obj =>
+            {
+                currentView = homeVM;
             });
         }
     }

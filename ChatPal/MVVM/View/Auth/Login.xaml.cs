@@ -1,4 +1,5 @@
 ﻿using ChatPal.db;
+using ChatPal.MVVM.VIewModel;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -29,8 +30,11 @@ namespace ChatPal.MVVM.View.Auth
 
         private void login(object sender, RoutedEventArgs e)
         {
-            Db.logUser(txtUsername.Text, pswPassword.Password);
-            Debug.WriteLine(Db.logUser(txtUsername.Text, pswPassword.Password).ToString());
+            if(Db.checkErrors(txtUsername.Text, pswPassword.Password) == "")
+            {
+                bool login = Db.logUser(txtUsername.Text, pswPassword.Password);
+            }
+            else lblError.Content = Db.checkErrors(txtUsername.Text, pswPassword.Password);
         }
     }
 }

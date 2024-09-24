@@ -19,6 +19,14 @@
                Grid.Row="0"
                HorizontalAlignment="Center"
                VerticalAlignment="Center"/>
+        <Label Name="lblError"
+               Foreground="Red"
+               Content=""
+               FontSize="10"
+               HorizontalAlignment="Center"
+               HorizontalContentAlignment="Center"
+               VerticalContentAlignment="Top"
+               Margin="0,112,0,61" Grid.RowSpan="2" Width="362"/>
 
         <TextBox Margin="219,56,225,19" 
                  Grid.Row="1"
@@ -28,6 +36,7 @@
                      Name="pswPassword"
                      Margin="219,56,225,19"/>
         <Button Grid.Row="3"
+                Name="btnLogin"
                 Content="Login" 
                 Margin="265,28,271,28"
                 FontSize="20" 
