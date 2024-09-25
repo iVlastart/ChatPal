@@ -33,6 +33,10 @@ namespace ChatPal.MVVM.View.Auth
             if(Db.checkErrors(txtUsername.Text, pswPassword.Password) == "")
             {
                 bool login = Db.logUser(txtUsername.Text, pswPassword.Password);
+                if (login)
+                {
+                    
+                }
             }
             else lblError.Content = Db.checkErrors(txtUsername.Text, pswPassword.Password);
         }

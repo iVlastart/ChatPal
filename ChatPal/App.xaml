@@ -4,6 +4,7 @@
              xmlns:local="clr-namespace:ChatPal"
              xmlns:viewModel="clr-namespace:ChatPal.MVVM.VIewModel"
              xmlns:viewAuth="clr-namespace:ChatPal.MVVM.View.Auth"
+             xmlns:viewApp="clr-namespace:ChatPal.MVVM.View.App"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
         <ResourceDictionary>
@@ -15,6 +16,9 @@
             </DataTemplate>
             <DataTemplate DataType="{x:Type viewModel:SigninViewModel}">
                 <viewAuth:Signin/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewModel:HomeViewModel}">
+                <viewApp:Home/>
             </DataTemplate>
         </ResourceDictionary>
     </Application.Resources>
