@@ -50,39 +50,38 @@ namespace ChatPal
         {
             var parent = (Panel)btnQuestion.Parent;
             if(parent != null) parent.Children.Remove(btnQuestion);
-            StackPanel stackPanel = new()
-            {
-                Orientation = Orientation.Horizontal,
-                Width = AppGrid.Width
-            };
-            
-            makeRadios(stackPanel);
-            AppGrid.Children.Add(stackPanel);
-            Grid.SetRow(stackPanel, 1);
-        }
-        private void makeRadios(StackPanel stackPanel)
-        {
+
             RadioButton radio1 = new()
             {
                 Content = "Chat",
-                HorizontalAlignment = HorizontalAlignment.Left,
-                Foreground = Brushes.White
-            };
-            RadioButton radio2 = new() 
-            { 
-                Content = "Friends",
+                Foreground = Brushes.White,
                 HorizontalAlignment = HorizontalAlignment.Center,
-                Foreground = Brushes.White
+                VerticalAlignment = VerticalAlignment.Center,
             };
-            RadioButton radio3 = new() 
-            { 
+            RadioButton radio2 = new()
+            {
+                Content = "Friends",
+                Foreground = Brushes.White,
+                HorizontalAlignment = HorizontalAlignment.Center,
+                VerticalAlignment = VerticalAlignment.Center,
+                
+            };
+            RadioButton radio3 = new()
+            {
                 Content = "Account",
-                HorizontalAlignment = HorizontalAlignment.Right,
-                Foreground = Brushes.White
+                Foreground = Brushes.White,
+                HorizontalAlignment = HorizontalAlignment.Center,
+                VerticalAlignment = VerticalAlignment.Center,
             };
-            stackPanel.Children.Add(radio1);
-            stackPanel.Children.Add(radio2);
-            stackPanel.Children.Add(radio3);
+            Grid.SetRow(radio1, 1);
+            Grid.SetRow(radio2, 1);
+            Grid.SetRow(radio3, 1);
+            Grid.SetColumn(radio1, 0);
+            Grid.SetColumn(radio2, 1);
+            Grid.SetColumn(radio3, 2);
+            AppGrid.Children.Add(radio1);
+            AppGrid.Children.Add(radio2);
+            AppGrid.Children.Add(radio3);
         }
     }
 }

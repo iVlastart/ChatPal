@@ -29,7 +29,10 @@ namespace ChatPal.MVVM.View.Auth
         private void signin(object sender, RoutedEventArgs e)
         {
             if(Db.checkErrors(txtUsername.Text, pswPassword.Password) != "") lblError.Content = Db.checkErrors(txtUsername.Text, pswPassword.Password);
-            else Db.addUser(txtUsername.Text, pswPassword.Password);
+            else
+            {
+                Db.addUser(txtUsername.Text, pswPassword.Password);
+            }
         }
     }
 }

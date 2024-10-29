@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ChatPal.MVVM.Model
 {
-    internal class User
+    public class User
     {
         public string Id { get; set; }
         public string Username { get; set; }

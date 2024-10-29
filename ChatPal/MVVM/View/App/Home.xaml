@@ -7,6 +7,19 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        <Label Content="Home" Foreground="White"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <TextBox Grid.Row="4" 
+                 Margin="10,0,108,0"
+                 VerticalAlignment="Center" 
+                 Height="46"/>
+        <Button Grid.Row="4"
+                    Content="U+F6C0" 
+                    Margin="692,22,0,22"/>
     </Grid>
 </UserControl>
