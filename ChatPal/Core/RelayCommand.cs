@@ -7,7 +7,7 @@ using System.Windows.Input;
 
 namespace ChatPal.Core
 {
-    internal class RelayCommand : ICommand
+    public class RelayCommand : ICommand
     {
         public Action<object> _execute;
         public Func<object, bool> _canExecute;

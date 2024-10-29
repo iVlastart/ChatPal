@@ -23,6 +23,7 @@ namespace ChatPal.MVVM.View.Auth
     /// </summary>
     public partial class Login : UserControl
     {
+        public MainViewModel main => Application.Current.MainWindow.DataContext as MainViewModel;
         public Login()
         {
             InitializeComponent();
@@ -35,7 +36,11 @@ namespace ChatPal.MVVM.View.Auth
                 bool login = Db.logUser(txtUsername.Text, pswPassword.Password);
                 if (login)
                 {
-                    
+                    if (Application.Current.MainWindow is MainWindow mainWin)
+                    {
+                        mainWin.Dispatcher.Invoke(() => mainWin.setWindowForApp());
+                    }
+                    main?.openHome();
                 }
             }
             else lblError.Content = Db.checkErrors(txtUsername.Text, pswPassword.Password);

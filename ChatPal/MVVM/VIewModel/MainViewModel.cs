@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ChatPal.MVVM.VIewModel
 {
-    internal class MainViewModel : ObservableObject
+    public class MainViewModel : ObservableObject
     {
         public RelayCommand LoginViewCommand { get; set; }
         public RelayCommand SigninViewCommand {  get; set; }
@@ -46,6 +46,11 @@ namespace ChatPal.MVVM.VIewModel
             {
                 currentView = homeVM;
             });
+        }
+
+        public void openHome()
+        {
+            currentView = homeVM;
         }
     }
 }

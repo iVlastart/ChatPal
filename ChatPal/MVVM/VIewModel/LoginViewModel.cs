@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ChatPal.MVVM.VIewModel
 {
-    internal class LoginViewModel
+    public class LoginViewModel
     {
     }
 }
