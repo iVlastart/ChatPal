@@ -22,7 +22,7 @@ namespace ChatPal.MVVM.View.App
     {
         public Home()
         {
-            //send icon uni => U+F6C0
+            //send icon uni => U+F6C0 and for xaml &#xF6C0;
             InitializeComponent();
             string uni = "U+F6C0";
         }

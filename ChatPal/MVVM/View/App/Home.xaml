@@ -14,12 +14,18 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <TextBox Grid.Row="4" 
-                 Margin="10,0,108,0"
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <TextBox Grid.Row="4"
+                 Margin="10,0,0,0"
                  VerticalAlignment="Center" 
-                 Height="46"/>
+                 Height="46" Grid.ColumnSpan="3"/>
         <Button Grid.Row="4"
-                    Content="U+F6C0" 
-                    Margin="692,22,0,22"/>
+                Content="&#xF6C0;"
+                Margin="55,22,55,22" Grid.Column="3"/>
     </Grid>
 </UserControl>
