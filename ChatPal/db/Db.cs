@@ -120,6 +120,37 @@ namespace ChatPal.db
             }
         }
 
+        internal static string getUsername(string userID)
+        {
+            string username = string.Empty;
+            SqlConnection con = new(Enviro.CONNECT());
+            try
+            {
+                openCon(con);
+                string query = "SELECT Username FROM Users WHERE ID=@ID";
+                using(SqlCommand cmd = new(query, con))
+                {
+                    cmd.Parameters.AddWithValue("@ID", userID);
+                    using(SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            username = (string)reader["Username"];
+                        }
+                    }
+                }
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Get Username ERROR", MessageBoxButton.OK);
+            }
+            finally
+            {
+                con.Close();
+            }
+            return username;
+        }
+
         internal static string checkErrors(string username, string password)
         {
             if (string.IsNullOrEmpty(username))

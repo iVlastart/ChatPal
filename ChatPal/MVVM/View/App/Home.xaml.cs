@@ -37,11 +37,13 @@ namespace ChatPal.MVVM.View.App
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
             string[][] datas = Db.getMsgs();
+            string username = string.Empty;
             foreach (var data in datas)
             {
                 if (data.Length >= 2) // Ensure both userID and Msg exist
                 {
                     //MessageBox.Show($"UserID: {row[0]}\nMessage: {row[1]}", "Message Info");
+                    username = Db.getUsername(data[0]);
                 }
             }
         }
