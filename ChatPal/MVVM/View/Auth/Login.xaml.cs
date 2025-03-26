@@ -1,5 +1,6 @@
 ﻿using ChatPal.db;
 using ChatPal.MVVM.VIewModel;
+using ChatPal.Session;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -36,6 +37,7 @@ namespace ChatPal.MVVM.View.Auth
                 bool login = Db.logUser(txtUsername.Text, pswPassword.Password);
                 if (login)
                 {
+                    Session.Session.username = txtUsername.Text;
                     if (Application.Current.MainWindow is MainWindow mainWin)
                     {
                         mainWin.Dispatcher.Invoke(() => mainWin.setWindowForApp());

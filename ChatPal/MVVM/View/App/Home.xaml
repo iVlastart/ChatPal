@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:ChatPal.MVVM.View.App"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="450" d:DesignWidth="800" Loaded="UserControl_Loaded">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
@@ -21,11 +21,21 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <TextBox Grid.Row="4"
+                 Name="txtMsg"
+                 Text="Msg"
                  Margin="10,0,0,0"
-                 VerticalAlignment="Center" 
-                 Height="46" Grid.ColumnSpan="3"/>
+                 VerticalAlignment="Center"
+                 VerticalContentAlignment="Center"
+                 Height="46" Grid.ColumnSpan="3"
+                 FontSize="20"/>
         <Button Grid.Row="4"
-                Content="&#xF6C0;"
-                Margin="55,22,55,22" Grid.Column="3"/>
+                Margin="55,22,55,22" Grid.Column="3"
+                Name="btnSend" Click="btnSend_Click">
+            <Button.Content>
+                <Image Width="20"
+                       Height="20"
+                       Source="C:\Users\Acer\source\repos\ChatPal\ChatPal\MVVM\View\icons\send-msg.png"/>
+            </Button.Content>
+        </Button>
     </Grid>
 </UserControl>

@@ -14,18 +14,32 @@ namespace ChatPal.db
         { 
             SqlConnection con = new(Enviro.CONNECT()); 
             try 
-            { 
-                openCon(con); 
-                string query = "INSERT INTO Users (ID, Username, Password) VALUES (@ID, @username, @password)"; 
-                using (SqlCommand cmd = new(query, con)) 
-                { 
-                    cmd.Parameters.AddWithValue("@ID", makeID(username)); 
-                    cmd.Parameters.AddWithValue("@username", username);
-                    cmd.Parameters.AddWithValue("@password", password); 
-                    cmd.ExecuteNonQuery(); 
-                } 
-                MessageBox.Show("Added"); 
-            } 
+            {
+                openCon(con);
+                string checkQuery = "SELECT COUNT(*) FROM Users WHERE Username = @username";
+                using (SqlCommand checkCmd = new(checkQuery, con))
+                {
+                    checkCmd.Parameters.AddWithValue("@username", username);
+                    int userExists = (int)checkCmd.ExecuteScalar();
+
+                    if (userExists > 0)
+                    {
+                        MessageBox.Show("Username already exists. Please choose another.");
+                    }
+                    else
+                    {
+                        string insertQuery = "INSERT INTO Users (ID, Username, Password) VALUES (@ID, @username, @password)";
+                        using (SqlCommand cmd = new(insertQuery, con))
+                        {
+                            cmd.Parameters.AddWithValue("@ID", makeID(username));
+                            cmd.Parameters.AddWithValue("@username", username);
+                            cmd.Parameters.AddWithValue("@password", password);
+                            cmd.ExecuteNonQuery();
+                        }
+                        MessageBox.Show("User added successfully.");
+                    }
+                }
+            }
             catch (Exception ex) 
             { 
                 MessageBox.Show(ex.Message, "addUser ERROR", MessageBoxButton.OK); 
@@ -82,6 +96,30 @@ namespace ChatPal.db
             return $"{id1stPart}.{new string(id2ndPart)}";
         }
 
+        internal static string getID(string username)
+        {
+            SqlConnection con = new(Enviro.CONNECT());
+            try
+            {
+                openCon(con);
+                string query = "SELECT ID FROM Users WHERE Username=@Username";
+                using (SqlCommand cmd = new(query, con))
+                {
+                    cmd.Parameters.AddWithValue("@Username", username);
+                    return cmd.ExecuteScalar().ToString() ?? string.Empty;
+                }
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message, "getID error", MessageBoxButton.OK);
+                return "";
+            }
+            finally
+            {
+                con.Close();
+            }
+        }
+
         internal static string checkErrors(string username, string password)
         {
             if (string.IsNullOrEmpty(username))
@@ -122,6 +160,33 @@ namespace ChatPal.db
             }
             finally { con.Close(); }
 
+        }
+
+        internal static void addMsg(string userID, string msg)
+        {
+            SqlConnection con = new(Enviro.CONNECT());
+            try
+            {
+                if (!string.IsNullOrEmpty(userID) && !string.IsNullOrEmpty(msg))
+                {
+                    openCon(con);
+                    string query = "INSERT INTO Messages UserID=@UserID, Msg=@Msg";
+                    using (SqlCommand cmd = new(query, con))
+                    {
+                        cmd.Parameters.AddWithValue("@UserID", userID);
+                        cmd.Parameters.AddWithValue("@Msg", msg); //good luck vlasta :D from Mr.J
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Add Message ERROR", MessageBoxButton.OK);
+            }
+            finally
+            {
+                con.Close();
+            }
         }
 
         private static void openCon(SqlConnection con)

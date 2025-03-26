@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ChatPal.db;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -24,7 +25,17 @@ namespace ChatPal.MVVM.View.App
         {
             //send icon uni => U+F6C0 and for xaml &#xF6C0;
             InitializeComponent();
-            string uni = "U+F6C0";
+        }
+        string userID = Db.getID(Session.Session.username);
+
+        private void btnSend_Click(object sender, RoutedEventArgs e)
+        {
+            Db.addMsg(userID, txtMsg.Text);
+        }
+
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            
         }
     }
 }

@@ -34,7 +34,7 @@
                     Background="Transparent"
                     BorderBrush="Transparent"
                     Foreground="White"
-                    FontSize="20" Margin="237,77,274,73" Click="Button_Click"/>
+                    FontSize="20" Margin="237,77,47,73" Click="Button_Click" Grid.ColumnSpan="2"/>
         </Grid>
     </Border>
 </Window>
