@@ -170,7 +170,7 @@ namespace ChatPal.db
                 if (!string.IsNullOrEmpty(userID) && !string.IsNullOrEmpty(msg))
                 {
                     openCon(con);
-                    string query = "INSERT INTO Messages UserID=@UserID, Msg=@Msg";
+                    string query = "INSERT INTO Msgs (UserID, Msg) VALUES (@UserID, @Msg)";
                     using (SqlCommand cmd = new(query, con))
                     {
                         cmd.Parameters.AddWithValue("@UserID", userID);
@@ -182,6 +182,40 @@ namespace ChatPal.db
             catch(Exception ex)
             {
                 MessageBox.Show(ex.Message, "Add Message ERROR", MessageBoxButton.OK);
+            }
+            finally
+            {
+                con.Close();
+            }
+        }
+
+        internal static string[][] getMsgs()
+        {
+            List<string[]> data = new();
+            SqlConnection con = new(Enviro.CONNECT());
+            try
+            {
+                openCon(con);
+                string query = "SELECT userID, Msg FROM Msgs";
+                using(SqlCommand cmd = new(query, con))
+                {
+                    cmd.ExecuteNonQuery();
+                    using(SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while(reader.Read())
+                        {
+                            string userId = reader["userID"].ToString();
+                            string msg = reader["Msg"].ToString();
+                            data.Add(new string[] { userId, msg });
+                        }
+                    }
+                }
+                return data.ToArray();
+            }
+            catch(Exception ex )
+            {
+                MessageBox.Show(ex.Message, "Get Message ERROR", MessageBoxButton.OK);
+                return Array.Empty<string[]>();
             }
             finally
             {

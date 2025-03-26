@@ -31,11 +31,19 @@ namespace ChatPal.MVVM.View.App
         private void btnSend_Click(object sender, RoutedEventArgs e)
         {
             Db.addMsg(userID, txtMsg.Text);
+            txtMsg.Text = "";
         }
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-            
+            string[][] datas = Db.getMsgs();
+            foreach (var data in datas)
+            {
+                if (data.Length >= 2) // Ensure both userID and Msg exist
+                {
+                    //MessageBox.Show($"UserID: {row[0]}\nMessage: {row[1]}", "Message Info");
+                }
+            }
         }
     }
 }
