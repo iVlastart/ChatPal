@@ -38,6 +38,7 @@
                        Source="C:\Users\Acer\source\repos\ChatPal\ChatPal\MVVM\View\icons\send-msg.png"/>
             </Button.Content>
         </Button>
-        <msg:Msg Username="Hello from MainView!"/>
+        <StackPanel Name="msgStack" Grid.ColumnSpan="4" Grid.RowSpan="4">
+        </StackPanel>
     </Grid>
 </UserControl>

@@ -1,4 +1,5 @@
 ﻿using ChatPal.db;
+using ChatPal.MVVM.View.Msg;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -38,14 +39,26 @@ namespace ChatPal.MVVM.View.App
         {
             string[][] datas = Db.getMsgs();
             string username = string.Empty;
+            string content = string.Empty;
             foreach (var data in datas)
             {
-                if (data.Length >= 2) // Ensure both userID and Msg exist
-                {
-                    //MessageBox.Show($"UserID: {row[0]}\nMessage: {row[1]}", "Message Info");
-                    username = Db.getUsername(data[0]);
-                }
+                //MessageBox.Show($"UserID: {row[0]}\nMessage: {row[1]}", "Message Info");
+                username = Db.getUsername(data[0]);
+                content = data[1];
+                loadMsgs(username, content);
             }
+        }
+
+        private void loadMsgs(string username, string content)
+        {
+            var msg = new ChatPal.MVVM.View.Msg.Msg
+            {
+                Username = username,
+                Content = content
+            };
+            Grid.SetRowSpan(msg, 4);
+            Grid.SetColumnSpan(msg, 4);
+            msgStack.Children.Add(msg);
         }
     }
 }

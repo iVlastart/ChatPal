@@ -26,12 +26,21 @@ namespace ChatPal.MVVM.View.Msg
         }
 
         public static readonly DependencyProperty UsernameProperty =
-            DependencyProperty.Register("Msg", typeof(string), typeof(Msg), new PropertyMetadata(string.Empty));
+            DependencyProperty.Register("Username", typeof(string), typeof(Msg), new PropertyMetadata(string.Empty));
+
+        public static readonly DependencyProperty ContentProperty =
+            DependencyProperty.Register("Content", typeof(string), typeof(Msg), new PropertyMetadata(string.Empty));
 
         public string Username
         {
             get { return (string)GetValue(UsernameProperty); }
             set { SetValue(UsernameProperty, value); }
+        }
+
+        public string Content
+        {
+            get { return ((string)GetValue(ContentProperty)); }
+            set { SetValue(ContentProperty, value); }
         }
     }
 }

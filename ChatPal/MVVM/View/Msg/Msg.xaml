@@ -13,6 +13,11 @@
         </Grid.RowDefinitions>
         <Label Content="{Binding Username, RelativeSource={RelativeSource AncestorType=UserControl}}"
                FontSize="24"
-               Grid.Row="0"/>
+               Grid.Row="0"
+               Foreground="White"/>
+        <Label Content="{Binding Content, RelativeSource={RelativeSource AncestorType=UserControl}}"
+               FontSize="30"
+               Grid.Row="1"
+               Foreground="White"/>
     </Grid>
 </UserControl>
