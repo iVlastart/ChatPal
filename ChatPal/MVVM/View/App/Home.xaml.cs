@@ -49,7 +49,7 @@ namespace ChatPal.MVVM.View.App
             }
         }
 
-        private void loadMsgs(string username, string content)
+        void loadMsgs(string username, string content)
         {
             var msg = new ChatPal.MVVM.View.Msg.Msg
             {

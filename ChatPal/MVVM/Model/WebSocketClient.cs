@@ -26,5 +26,13 @@ namespace ChatPal.MVVM.Model
             _socket.OnClose += (s, e) => Disconnected?.Invoke();
             _socket.ConnectAsync();
         }
+
+        public void sendMsg()
+        {
+            if(_socket!= null && _socket.IsAlive)
+            {
+                
+            }
+        }
     }
 }
