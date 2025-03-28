@@ -27,12 +27,17 @@ namespace ChatPal.MVVM.Model
             _socket.ConnectAsync();
         }
 
-        public void sendMsg()
+        public void sendMsg(string msg)
         {
             if(_socket!= null && _socket.IsAlive)
             {
-                
+                _socket.Send(msg);
             }
+        }
+
+        public void disconnect()
+        {
+            _socket?.Close();
         }
     }
 }
