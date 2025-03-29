@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ChatPal.Net.IO;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Sockets;
@@ -16,11 +17,15 @@ namespace ChatPal.Net
             client = new TcpClient();
         }
 
-        public void connect()
+        public void connect(string username)
         {
             if (!client.Connected)
             {
                 client.Connect("127.0.0.1", 6969);
+                var connectPacket = new PacketBuilder();
+                connectPacket.writeOpCode(0);
+                connectPacket.writeString(username);
+                client.Client.Send(connectPacket.getPacketBytes());
             }
         }
     }

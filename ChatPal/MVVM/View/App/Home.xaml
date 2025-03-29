@@ -23,12 +23,11 @@
         </Grid.ColumnDefinitions>
         <TextBox Grid.Row="4"
                  Name="txtMsg"
-                 Text="Msg"
                  Margin="10,0,0,0"
                  VerticalAlignment="Center"
                  VerticalContentAlignment="Center"
                  Height="46" Grid.ColumnSpan="3"
-                 FontSize="20"/>
+                 FontSize="20" Loaded="txtMsg_Loaded"/>
         <Button Grid.Row="4"
                 Margin="55,22,55,22" Grid.Column="3"
                 Name="btnSend" Click="btnSend_Click">

@@ -18,6 +18,7 @@ namespace ChatPal.MVVM.VIewModel
         public LoginViewModel loginVM { get; set; }
         public SigninViewModel signinVM { get; set; }
         public HomeViewModel homeVM { get; set; }
+        public string Msg { get; set; }
         private object _currentView;
         private Server _server;
 
@@ -52,7 +53,7 @@ namespace ChatPal.MVVM.VIewModel
             });
 
             ConnectToServerCommand = new RelayCommand(obj => {
-                _server.connect();
+                _server.connect(Session.Session.username);
             });
         }
 

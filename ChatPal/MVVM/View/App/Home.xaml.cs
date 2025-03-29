@@ -1,5 +1,6 @@
 ﻿using ChatPal.db;
 using ChatPal.MVVM.View.Msg;
+using ChatPal.MVVM.VIewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,6 +31,7 @@ namespace ChatPal.MVVM.View.App
             InitializeComponent();
         }
         string userID = Db.getID(Session.Session.username);
+        public MainViewModel main => Application.Current.MainWindow.DataContext as MainViewModel;
 
         private void btnSend_Click(object sender, RoutedEventArgs e)
         {
@@ -61,6 +63,18 @@ namespace ChatPal.MVVM.View.App
             Grid.SetRowSpan(msg, 4);
             Grid.SetColumnSpan(msg, 4);
             msgStack.Children.Add(msg);
+        }
+
+        private void txtMsg_Loaded(object sender, RoutedEventArgs e)
+        {
+            Binding binding = new("Msg")
+            {
+                Source = main,
+                Mode = BindingMode.TwoWay,
+                UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged
+            };
+
+            txtMsg.SetBinding(TextBox.TextProperty, binding);
         }
     }
 }
