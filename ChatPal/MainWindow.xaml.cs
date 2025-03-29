@@ -48,40 +48,8 @@ namespace ChatPal
         }
         public void setWindowForApp()
         {
-            var parent = (Panel)btnQuestion.Parent;
-            if(parent != null) parent.Children.Remove(btnQuestion);
-
-            RadioButton radio1 = new()
-            {
-                Content = "Chat",
-                Foreground = Brushes.White,
-                HorizontalAlignment = HorizontalAlignment.Center,
-                VerticalAlignment = VerticalAlignment.Center,
-            };
-            RadioButton radio2 = new()
-            {
-                Content = "Friends",
-                Foreground = Brushes.White,
-                HorizontalAlignment = HorizontalAlignment.Center,
-                VerticalAlignment = VerticalAlignment.Center,
-                
-            };
-            RadioButton radio3 = new()
-            {
-                Content = "Account",
-                Foreground = Brushes.White,
-                HorizontalAlignment = HorizontalAlignment.Center,
-                VerticalAlignment = VerticalAlignment.Center,
-            };
-            Grid.SetRow(radio1, 1);
-            Grid.SetRow(radio2, 1);
-            Grid.SetRow(radio3, 1);
-            Grid.SetColumn(radio1, 0);
-            Grid.SetColumn(radio2, 1);
-            Grid.SetColumn(radio3, 2);
-            AppGrid.Children.Add(radio1);
-            AppGrid.Children.Add(radio2);
-            AppGrid.Children.Add(radio3);
+            btnQuestion.Visibility = Visibility.Collapsed;
+            btnConnect.Visibility = Visibility.Visible;
         }
     }
 }

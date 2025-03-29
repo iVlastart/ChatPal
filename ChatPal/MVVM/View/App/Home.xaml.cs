@@ -28,9 +28,7 @@ namespace ChatPal.MVVM.View.App
         {
             //send icon uni => U+F6C0 and for xaml &#xF6C0;
             InitializeComponent();
-            connectWebSocket();
         }
-        private WebSocketSharp.WebSocket socket;
         string userID = Db.getID(Session.Session.username);
 
         private void btnSend_Click(object sender, RoutedEventArgs e)
@@ -63,22 +61,6 @@ namespace ChatPal.MVVM.View.App
             Grid.SetRowSpan(msg, 4);
             Grid.SetColumnSpan(msg, 4);
             msgStack.Children.Add(msg);
-        }
-
-        private void connectWebSocket()
-        {
-            socket = new WebSocketSharp.WebSocket("wss://127.0.0.1:6969");
-            socket.OnOpen += (s, e) =>
-            {
-                Application.Current.Dispatcher.Invoke(() => MessageBox.Show("Connected"));
-            };
-            
-            socket.OnMessage += (s, e) =>
-            {
-                Application.Current.Dispatcher.Invoke(() => loadMsgs(Session.Session.username, txtMsg.Text));
-            };
-
-
         }
     }
 }

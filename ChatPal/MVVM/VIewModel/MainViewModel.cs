@@ -1,4 +1,5 @@
 ﻿using ChatPal.Core;
+using ChatPal.Net;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,10 +14,12 @@ namespace ChatPal.MVVM.VIewModel
         public RelayCommand LoginViewCommand { get; set; }
         public RelayCommand SigninViewCommand {  get; set; }
         public RelayCommand HomeViewCommand { get; set; }
+        public RelayCommand ConnectToServerCommand { get; set; }
         public LoginViewModel loginVM { get; set; }
         public SigninViewModel signinVM { get; set; }
         public HomeViewModel homeVM { get; set; }
         private object _currentView;
+        private Server _server;
 
         public object currentView
         {
@@ -30,6 +33,7 @@ namespace ChatPal.MVVM.VIewModel
 
         public MainViewModel()
         {
+            _server = new Server();
             loginVM = new LoginViewModel();
             signinVM = new SigninViewModel();
             homeVM = new HomeViewModel();
@@ -45,6 +49,10 @@ namespace ChatPal.MVVM.VIewModel
             HomeViewCommand = new RelayCommand(obj =>
             {
                 currentView = homeVM;
+            });
+
+            ConnectToServerCommand = new RelayCommand(obj => {
+                _server.connect();
             });
         }
 

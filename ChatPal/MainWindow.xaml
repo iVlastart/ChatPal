@@ -35,6 +35,16 @@
                     BorderBrush="Transparent"
                     Foreground="White"
                     FontSize="20" Margin="237,77,47,73" Click="Button_Click" Grid.ColumnSpan="2"/>
+
+            <Button Name="btnConnect"
+                    Grid.Row="1"
+                    Height="50"
+                    Width="100"
+                    Content="Connect"
+                    HorizontalAlignment="Center" 
+                    Grid.Column="2"
+                    Command="{Binding ConnectToServerCommand}"
+                    Visibility="Collapsed"/>
         </Grid>
     </Border>
 </Window>
