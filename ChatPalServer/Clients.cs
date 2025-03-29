@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ChatPalServer.Net.IO;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Sockets;
@@ -12,12 +13,15 @@ namespace ChatPalServer
         public string Username { get; set; }
         public Guid UID { get; set; }
         public TcpClient Client { get; set; }
+        PacketReader _packetReader;
         public Clients(TcpClient client)
         {
             this.Client = client;
             this.UID = Guid.NewGuid();
-
-            Console.WriteLine($"{DateTime.Now}: {Client} has connected!");
+            _packetReader = new PacketReader(Client.GetStream());
+            var opcode = _packetReader.ReadByte();
+            Username = _packetReader.readMsg();
+            Console.WriteLine($"{DateTime.Now}: {Username} has connected!");
         }
     }
 }
