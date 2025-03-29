@@ -67,14 +67,22 @@ namespace ChatPal.MVVM.View.App
 
         private void txtMsg_Loaded(object sender, RoutedEventArgs e)
         {
-            Binding binding = new("Msg")
+            Binding bindingMsg = new("Msg")
             {
                 Source = main,
                 Mode = BindingMode.TwoWay,
                 UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged
             };
 
-            txtMsg.SetBinding(TextBox.TextProperty, binding);
+            Binding bindingCmd = new("sendMsgCommand")
+            {
+                Source = main,
+                Mode = BindingMode.TwoWay,
+                UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged
+            };
+
+            txtMsg.SetBinding(TextBox.TextProperty, bindingMsg);
+            btnSend.SetBinding(TextBox.TextProperty, bindingCmd);
         }
     }
 }

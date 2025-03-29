@@ -22,6 +22,34 @@ namespace ChatPalServer
             var opcode = _packetReader.ReadByte();
             Username = _packetReader.readMsg();
             Console.WriteLine($"{DateTime.Now}: {Username} has connected!");
+
+            Task.Run(() => process());
+        }
+
+        void process()
+        {
+            while (true)
+            {
+                try
+                {
+                    var opcode = _packetReader.ReadByte();
+                    switch(opcode)
+                    {
+                        case 5:
+                            var msg = _packetReader.readMsg();
+                            Console.WriteLine(msg);
+                            Program.broadcastMsg(msg);
+                            break;
+                    }
+                }
+                catch(Exception ex)
+                {
+                    Console.WriteLine($"{UID} disconnected");
+                    Program.broadcastDisconnect(UID.ToString());
+                    Client.Close();
+                    break;
+                }
+            }
         }
     }
 }
