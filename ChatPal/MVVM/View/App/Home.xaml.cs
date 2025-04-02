@@ -36,6 +36,7 @@ namespace ChatPal.MVVM.View.App
         private void btnSend_Click(object sender, RoutedEventArgs e)
         {
             Db.addMsg(userID, txtMsg.Text);
+            loadMsgs(Session.Session.username, txtMsg.Text);
             txtMsg.Text = "";
         }
 
@@ -63,26 +64,6 @@ namespace ChatPal.MVVM.View.App
             Grid.SetRowSpan(msg, 4);
             Grid.SetColumnSpan(msg, 4);
             msgStack.Children.Add(msg);
-        }
-
-        private void txtMsg_Loaded(object sender, RoutedEventArgs e)
-        {
-            Binding bindingMsg = new("Msg")
-            {
-                Source = main,
-                Mode = BindingMode.TwoWay,
-                UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged
-            };
-
-            Binding bindingCmd = new("sendMsgCommand")
-            {
-                Source = main,
-                Mode = BindingMode.TwoWay,
-                UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged
-            };
-
-            txtMsg.SetBinding(TextBox.TextProperty, bindingMsg);
-            btnSend.SetBinding(TextBox.TextProperty, bindingCmd);
         }
     }
 }

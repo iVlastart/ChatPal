@@ -27,7 +27,7 @@
                  VerticalAlignment="Center"
                  VerticalContentAlignment="Center"
                  Height="46" Grid.ColumnSpan="3"
-                 FontSize="20" Loaded="txtMsg_Loaded"/>
+                 FontSize="20"/>
         <Button Grid.Row="4"
                 Margin="55,22,55,22" Grid.Column="3"
                 Name="btnSend" Click="btnSend_Click">
@@ -37,7 +37,10 @@
                        Source="C:\Users\Acer\source\repos\ChatPal\ChatPal\MVVM\View\icons\send-msg.png"/>
             </Button.Content>
         </Button>
-        <StackPanel Name="msgStack" Grid.ColumnSpan="4" Grid.RowSpan="4">
-        </StackPanel>
+        <ScrollViewer Grid.RowSpan="4" Grid.ColumnSpan="4"
+                      VerticalScrollBarVisibility="Auto"
+                      HorizontalScrollBarVisibility="Disabled">
+            <StackPanel Name="msgStack"/>
+        </ScrollViewer>
     </Grid>
 </UserControl>
