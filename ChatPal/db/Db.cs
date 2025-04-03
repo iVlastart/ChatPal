@@ -136,12 +136,22 @@ namespace ChatPal.db
             return username;
         }
 
-        internal static void updateUsername(string ID, string username)
+        internal static void updateUsername(string ID, string newUsername, string oldUsername, string password)
         {
             SqlConnection con = new(Enviro.CONNECT());
             try
             {
                 openCon(con);
+                string query = "UPDATE Users SET Username=@newUsername WHERE ID=@ID AND Username=@oldUsername AND Password=@Password";
+                using(SqlCommand cmd = new(query, con))
+                {
+                    cmd.Parameters.AddWithValue("@newUsername", newUsername);
+                    cmd.Parameters.AddWithValue("@ID", ID);
+                    cmd.Parameters.AddWithValue("@oldUsername", oldUsername);
+                    cmd.Parameters.AddWithValue("@Password", password);
+                    cmd.ExecuteNonQuery();
+                }
+                Session.Session.username = newUsername;
             }
             catch(Exception ex)
             {

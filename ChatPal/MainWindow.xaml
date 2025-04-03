@@ -50,7 +50,9 @@
                      VerticalAlignment="Center"
                      Height="35"
                      Name="txtEdit"
-                     Visibility="Collapsed"/>
+                     Visibility="Collapsed"
+                     MaxLength="10"
+                     VerticalContentAlignment="Center"/>
             <Button Content="Edit"
                     Grid.Row="1"
                     Grid.Column="2"

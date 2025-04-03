@@ -39,6 +39,7 @@ namespace ChatPal.MVVM.View.Auth
                 {
                     Session.Session.ID = Db.getID(txtUsername.Text);
                     Session.Session.username = txtUsername.Text;
+                    Session.Session.password = pswPassword.Password;
                     if (Application.Current.MainWindow is MainWindow mainWin)
                     {
                         mainWin.Dispatcher.Invoke(() => mainWin.setWindowForApp());

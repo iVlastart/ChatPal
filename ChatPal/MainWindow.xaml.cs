@@ -1,4 +1,5 @@
-﻿using ChatPal.MVVM.View.Auth;
+﻿using ChatPal.db;
+using ChatPal.MVVM.View.Auth;
 using ChatPal.MVVM.VIewModel;
 using System.Diagnostics;
 using System.Text;
@@ -58,7 +59,8 @@ namespace ChatPal
         {
             if (!string.IsNullOrEmpty(txtEdit.Text))
             {
-
+                Db.updateUsername(Session.Session.ID, txtEdit.Text, Session.Session.username, Session.Session.password);
+                txtEdit.Text = "";
             }
         }
     }

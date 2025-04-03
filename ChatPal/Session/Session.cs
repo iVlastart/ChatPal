@@ -10,5 +10,6 @@ namespace ChatPal.Session
     {
         public static string ID { get; set; }
         public static string username {  get; set; }
+        public static string password {  get; set; }
     }
 }
