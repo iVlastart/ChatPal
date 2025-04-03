@@ -16,28 +16,13 @@ namespace ChatPal.db
             try 
             {
                 openCon(con);
-                string checkQuery = "SELECT COUNT(*) FROM Users WHERE Username = @username";
-                using (SqlCommand checkCmd = new(checkQuery, con))
+                string insertQuery = "INSERT INTO Users (ID, Username, Password) VALUES (@ID, @username, @password)";
+                using (SqlCommand cmd = new(insertQuery, con))
                 {
-                    checkCmd.Parameters.AddWithValue("@username", username);
-                    int userExists = (int)checkCmd.ExecuteScalar();
-
-                    if (userExists > 0)
-                    {
-                        MessageBox.Show("Username already exists. Please choose another.");
-                    }
-                    else
-                    {
-                        string insertQuery = "INSERT INTO Users (ID, Username, Password) VALUES (@ID, @username, @password)";
-                        using (SqlCommand cmd = new(insertQuery, con))
-                        {
-                            cmd.Parameters.AddWithValue("@ID", makeID(username));
-                            cmd.Parameters.AddWithValue("@username", username);
-                            cmd.Parameters.AddWithValue("@password", password);
-                            cmd.ExecuteNonQuery();
-                        }
-                        MessageBox.Show("User added successfully.");
-                    }
+                    cmd.Parameters.AddWithValue("@ID", makeID(username));
+                    cmd.Parameters.AddWithValue("@username", username);
+                    cmd.Parameters.AddWithValue("@password", password);     
+                    cmd.ExecuteNonQuery();        
                 }
             }
             catch (Exception ex) 
@@ -149,6 +134,19 @@ namespace ChatPal.db
                 con.Close();
             }
             return username;
+        }
+
+        internal static void updateUsername(string ID, string username)
+        {
+            SqlConnection con = new(Enviro.CONNECT());
+            try
+            {
+                openCon(con);
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Update Username ERROR", MessageBoxButton.OK);
+            }
         }
 
         internal static string checkErrors(string username, string password)

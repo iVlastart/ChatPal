@@ -49,7 +49,17 @@ namespace ChatPal
         public void setWindowForApp()
         {
             btnQuestion.Visibility = Visibility.Collapsed;
-            btnConnect.Visibility = Visibility.Visible;
+            lblEdit.Visibility = Visibility.Visible;
+            txtEdit.Visibility = Visibility.Visible;
+            btnEdit.Visibility = Visibility.Visible;
+        }
+
+        private void btnEdit_Click(object sender, RoutedEventArgs e)
+        {
+            if (!string.IsNullOrEmpty(txtEdit.Text))
+            {
+
+            }
         }
     }
 }

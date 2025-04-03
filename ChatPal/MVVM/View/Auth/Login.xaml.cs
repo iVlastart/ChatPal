@@ -37,6 +37,7 @@ namespace ChatPal.MVVM.View.Auth
                 bool login = Db.logUser(txtUsername.Text, pswPassword.Password);
                 if (login)
                 {
+                    Session.Session.ID = Db.getID(txtUsername.Text);
                     Session.Session.username = txtUsername.Text;
                     if (Application.Current.MainWindow is MainWindow mainWin)
                     {

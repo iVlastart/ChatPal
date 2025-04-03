@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:ChatPal"
         xmlns:viewModel="clr-namespace:ChatPal.MVVM.VIewModel"
         mc:Ignorable="d"
-        Height="600" Width="920">
+        Height="600" Width="920" ResizeMode="NoResize">
     <Window.DataContext>
         <viewModel:MainViewModel/>
     </Window.DataContext>
@@ -36,15 +36,30 @@
                     Foreground="White"
                     FontSize="20" Margin="237,77,47,73" Click="Button_Click" Grid.ColumnSpan="2"/>
 
-            <Button Name="btnConnect"
+            <Label Content="Edit Username"
+                   Grid.Row="1"
+                   Grid.Column="0"
+                   Foreground="White"
+                   FontSize="25"
+                   Height="50"
+                   HorizontalContentAlignment="Center"
+                   Name="lblEdit"
+                   Visibility="Collapsed"/>
+            <TextBox Grid.Column="1" 
+                     Grid.Row="1"
+                     VerticalAlignment="Center"
+                     Height="35"
+                     Name="txtEdit"
+                     Visibility="Collapsed"/>
+            <Button Content="Edit"
                     Grid.Row="1"
-                    Height="50"
-                    Width="100"
-                    Content="Connect"
-                    HorizontalAlignment="Center" 
                     Grid.Column="2"
-                    Command="{Binding ConnectToServerCommand}"
-                    Visibility="Collapsed"/>
+                    Height="35"
+                    Width="50"
+                    HorizontalAlignment="Left"
+                    Name="btnEdit"
+                    Visibility="Collapsed"
+                    Click="btnEdit_Click"/>
         </Grid>
     </Border>
 </Window>

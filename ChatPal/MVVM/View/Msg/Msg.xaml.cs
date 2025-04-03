@@ -46,6 +46,8 @@ namespace ChatPal.MVVM.View.Msg
             }
         }
 
+
+
         private void createDelBtn()
         {
             // Only create the button if the Username matches the session username
@@ -54,29 +56,28 @@ namespace ChatPal.MVVM.View.Msg
                 Button btn = new()
                 {
                     Content = "Delete",
-                    Height = 50,
+                    Height = 25,
                     Width = 75,
                     Background = Brushes.Red,
                     Margin = new Thickness(5),
                 };
-                btn.Click += Btn_Click; // Attach click event handler
+                btn.Click += Btn_Click;
                 Grid.SetColumn(btn, 1);
                 Grid.SetRow(btn, 1);
                 grid.Children.Add(btn);
             }
         }
 
+
         private void Btn_Click(object sender, RoutedEventArgs e)
         {
-            // Delete the message using Db.delMsg method
             Db.delMsg(Username, Content);
 
-            // Show a message box confirming deletion
             MessageBox.Show("Message deleted");
             var parentStackPanel = this.Parent as StackPanel;
             if (parentStackPanel != null)
             {
-                parentStackPanel.Children.Remove(this); // Remove this Msg UserControl from the StackPanel
+                parentStackPanel.Children.Remove(this);
             }
         }
     }
