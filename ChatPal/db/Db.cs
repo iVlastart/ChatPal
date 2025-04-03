@@ -254,6 +254,31 @@ namespace ChatPal.db
             }
         }
 
+        internal static void delMsg(string username, string content)
+        {
+            SqlConnection con = new(Enviro.CONNECT());
+            string ID = getID(username);
+            try
+            {
+                openCon(con);
+                string query = "DELETE FROM Msgs WHERE Msg=@Msg AND UserID=@UserID";
+                using(SqlCommand cmd = new(query, con))
+                {
+                    cmd.Parameters.AddWithValue("@Msg", content);
+                    cmd.Parameters.AddWithValue("@UserID", ID);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+            catch(Exception ex )
+            {
+                MessageBox.Show(ex.Message, "Delete Message ERROR", MessageBoxButton.OK);
+            }
+            finally
+            {
+                con.Close();
+            }
+        }
+
         private static void openCon(SqlConnection con)
         {
             if (con.State == System.Data.ConnectionState.Closed) con.Open();

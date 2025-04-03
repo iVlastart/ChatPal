@@ -6,11 +6,15 @@
              xmlns:local="clr-namespace:ChatPal.MVVM.View.Msg"
              mc:Ignorable="d" 
              d:DesignHeight="200" d:DesignWidth="700">
-    <Grid>
+    <Grid Name="grid">
         <Grid.RowDefinitions>
             <RowDefinition Height="50"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="650"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
         <Label Content="{Binding Username, RelativeSource={RelativeSource AncestorType=UserControl}}"
                FontSize="24"
                Grid.Row="0"
