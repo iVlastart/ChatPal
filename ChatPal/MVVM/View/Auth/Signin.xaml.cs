@@ -31,7 +31,10 @@ namespace ChatPal.MVVM.View.Auth
             if(Db.checkErrors(txtUsername.Text, pswPassword.Password) != "") lblError.Content = Db.checkErrors(txtUsername.Text, pswPassword.Password);
             else
             {
+                Session.Session.username = txtUsername.Text;
+                Session.Session.password = pswPassword.Password;
                 Db.addUser(txtUsername.Text, pswPassword.Password);
+                Session.Session.ID = Db.getID(txtUsername.Text);
             }
         }
     }
